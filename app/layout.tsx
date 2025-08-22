@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'react-hot-toast'
@@ -8,7 +8,14 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
   title: 'Saylani Connect - Appointment & Request System',
   description: 'A comprehensive system for managing appointments and help requests for Saylani Welfare',
+  // themeColor: "#ffffff",
+  other: {
+    "color-scheme": "light",
+  },
 }
+export const viewport: Viewport = {
+  themeColor: "#ffffff", // ✅ Move it here
+};
 
 export default function RootLayout({
   children,
@@ -17,6 +24,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        {/* ✅ Force browsers to stick with light scheme */}
+        <meta name="color-scheme" content="light only" />
+      </head>
       <body className={inter.className}>
         {children}
         <Toaster
